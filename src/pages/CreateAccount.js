@@ -28,49 +28,49 @@ function Login() {
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                Create account
+                Criar uma conta
               </h1>
               <Label>
                 <span>Email</span>
                 <Input className="mt-1" type="email" placeholder="john@doe.com" />
               </Label>
               <Label className="mt-4">
-                <span>Password</span>
+                <span>Senha</span>
                 <Input className="mt-1" placeholder="***************" type="password" />
               </Label>
               <Label className="mt-4">
-                <span>Confirm password</span>
+                <span>Confirme sua senha</span>
                 <Input className="mt-1" placeholder="***************" type="password" />
               </Label>
 
               <Label className="mt-6" check>
                 <Input type="checkbox" />
                 <span className="ml-2">
-                  I agree to the <span className="underline">privacy policy</span>
+                  Eu concordo com a <span className="underline">política de privacidade.</span>
                 </span>
               </Label>
 
               <Button tag={Link} to="/login" block className="mt-4">
-                Create account
+                Criar conta
               </Button>
 
               <hr className="my-8" />
 
-              <Button block layout="outline">
+              {/* <Button block layout="outline">
                 <GithubIcon className="w-4 h-4 mr-2" aria-hidden="true" />
                 Github
               </Button>
               <Button block className="mt-4" layout="outline">
                 <TwitterIcon className="w-4 h-4 mr-2" aria-hidden="true" />
                 Twitter
-              </Button>
+              </Button> */}
 
               <p className="mt-4">
                 <Link
                   className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
                   to="/login"
                 >
-                  Already have an account? Login
+                  Já possui uma conta? Faça Login
                 </Link>
               </p>
             </div>
