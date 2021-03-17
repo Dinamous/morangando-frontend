@@ -50,9 +50,7 @@ function Tables() {
     setIsModalOpen(false);
   }
 
-  function deletarProduto() {
-    API.delete(`produtos/${idProduto}`);
-  }
+  function deletarProduto() {}
 
   // on page change, load new sliced data
   // here you would make another server request for new data
@@ -63,33 +61,18 @@ function Tables() {
   //       pageTable2 * resultsPerPage
   //     )
   //   );
-  // }, [pageTable]);
+  // }, [pageTable2]);
 
   useEffect(() => {
     API.get("produtos").then(function (response) {
       // handle success
-    //  setDataTable(response.data.response.produtos);
+      setDataTable(response.data.response.produtos);
       setTotalResults(response.data.response.quantidade);
-
-      setDataTable(response.data.response.produtos.slice(
-        (pageTable - 1) * resultsPerPage,
-        pageTable * resultsPerPage
-      ));
     });
-  }, [pageTable]);
+  }, []);
 
   function NovoProduto() {
-    history.push({
-      pathname: "formProdutos",
-      state: {},
-    });
-  }
-
-  function AtualizaProduto(produto) {
-    history.push({
-      pathname: "formProdutos",
-      state: { produto },
-    });
+    history.push("formProdutos");
   }
 
   return (
@@ -133,12 +116,7 @@ function Tables() {
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center space-x-4">
-                    <Button
-                      layout="link"
-                      size="icon"
-                      aria-label="Edit"
-                      onClick={() => AtualizaProduto(linha)}
-                    >
+                    <Button layout="link" size="icon" aria-label="Edit">
                       <EditIcon className="w-5 h-5" aria-hidden="true" />
                     </Button>
                     <Button

@@ -17,6 +17,16 @@ const routes = [
     name: "Produtos",
   },
   {
+    path: "/app/entrada",
+    icon: "FormsIcon",
+    name: "Entrada de Produto",
+  },
+  {
+    path: "/app/saida",
+    icon: "FormsIcon",
+    name: "Saída de Produto",
+  },
+  {
     path: "/app/forms",
     icon: "FormsIcon",
     name: "Formularios",

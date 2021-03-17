@@ -10,9 +10,14 @@ const Modals = lazy(() => import("../pages/Modals"));
 const Tables = lazy(() => import("../pages/Tables"));
 const Page404 = lazy(() => import("../pages/404"));
 const Blank = lazy(() => import("../pages/Blank"));
+//===============================
 const Produtos = lazy(() => import("../pages/Produtos"));
+const Entrada = lazy(() => import("../pages/Entrada"));
+const Saida = lazy(() => import("../pages/Saida"));
 //===============================
 const FormProduto = lazy(() => import("../pages/forms/FormProduto"));
+const FormEntrada = lazy(() => import("../pages/forms/FormEntrada"));
+const FormSaida = lazy(() => import("../pages/forms/FormSaida"));
 
 /**
  * ⚠ These are internal routes!
@@ -69,6 +74,23 @@ const routes = [
     path: "/formProdutos",
     component: FormProduto,
   },
+  {
+    path: "/entrada",
+    component: Entrada,
+  },
+  {
+    path: "/formEntrada",
+    component: FormEntrada,
+  },
+  {
+    path: "/saida",
+    component: Saida,
+  },
+  {
+    path: "/formSaida",
+    component: FormSaida,
+  },
+
 ];
 
 export default routes;

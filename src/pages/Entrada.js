@@ -50,9 +50,7 @@ function Tables() {
     setIsModalOpen(false);
   }
 
-  function deletarProduto() {
-    API.delete(`produtos/${idProduto}`);
-  }
+  function deletarProduto() {}
 
   // on page change, load new sliced data
   // here you would make another server request for new data
@@ -63,57 +61,49 @@ function Tables() {
   //       pageTable2 * resultsPerPage
   //     )
   //   );
-  // }, [pageTable]);
+  // }, [pageTable2]);
 
   useEffect(() => {
-    API.get("produtos").then(function (response) {
+    API.get("entradas").then(function (response) {
       // handle success
-    //  setDataTable(response.data.response.produtos);
+    //  setDataTable(response.data.response.entradas);
       setTotalResults(response.data.response.quantidade);
 
-      setDataTable(response.data.response.produtos.slice(
+      setDataTable(response.data.response.entradas.slice(
         (pageTable - 1) * resultsPerPage,
         pageTable * resultsPerPage
       ));
     });
   }, [pageTable]);
 
-  function NovoProduto() {
-    history.push({
-      pathname: "formProdutos",
-      state: {},
-    });
-  }
-
-  function AtualizaProduto(produto) {
-    history.push({
-      pathname: "formProdutos",
-      state: { produto },
-    });
+  function NovaEntrada() {
+    history.push("formEntrada");
   }
 
   return (
     <>
-      <PageTitle>Produtos</PageTitle>
+      <PageTitle>Entradas de Produtos</PageTitle>
 
       <div className="flex items-center flex-row-reverse">
         <Button
           size="large"
-          onClick={NovoProduto}
+          onClick={NovaEntrada}
           renderAs={Link}
           to="/app/formProdutos"
         >
-          Adicionar Produto
+          Adicionar Nova Entrada
         </Button>
       </div>
 
-      <SectionTitle>Produtos cadastrados</SectionTitle>
+      <SectionTitle>Entradas cadastradas</SectionTitle>
       <TableContainer className="mb-8">
         <Table>
           <TableHeader>
             <tr>
-              <TableCell>Nome</TableCell>
-              <TableCell>Tipo</TableCell>
+              <TableCell>Data</TableCell>
+              <TableCell>Produto</TableCell>
+              <TableCell>Tipo Produto</TableCell>
+              <TableCell>Fornecedor</TableCell>
               <TableCell>Quantidade</TableCell>
               <TableCell>Ações</TableCell>
             </tr>
@@ -122,23 +112,24 @@ function Tables() {
             {dataTable.map((linha, i) => (
               <TableRow key={i}>
                 <TableCell>
-                  <p className="font-semibold">{linha.nome}</p>
+                  <p className="font-semibold">{linha.dataEntrada}</p>
                 </TableCell>
                 <TableCell>
-                  <span className="text-sm">{linha.tipo}</span>
+                  <span className="text-sm">{linha.produto.nome}</span>
+                </TableCell>
+                <TableCell>
+                  <span className="text-sm">{linha.produto.tipo}</span>
                 </TableCell>
 
                 <TableCell>
-                  <span className="text-sm">{linha.quantidadeEstoque}</span>
+                  <span className="text-sm">{linha.fornecedor.nome}</span>
+                </TableCell>
+                <TableCell>
+                  <span className="text-sm">{linha.quantidadeProduto}</span>
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center space-x-4">
-                    <Button
-                      layout="link"
-                      size="icon"
-                      aria-label="Edit"
-                      onClick={() => AtualizaProduto(linha)}
-                    >
+                    <Button layout="link" size="icon" aria-label="Edit">
                       <EditIcon className="w-5 h-5" aria-hidden="true" />
                     </Button>
                     <Button
