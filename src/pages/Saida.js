@@ -64,40 +64,44 @@ function Tables() {
   // }, [pageTable2]);
 
   useEffect(() => {
-    API.get("produtos").then(function (response) {
+    API.get("saidas").then(function (response) {
       // handle success
-      setDataTable(response.data.response.produtos);
+      setDataTable(response.data.response.saidas);
       setTotalResults(response.data.response.quantidade);
     });
   }, []);
 
   function NovoProduto() {
-    history.push("formProdutos");
+    history.push("formSaida");
   }
 
   return (
     <>
-      <PageTitle>Produtos</PageTitle>
+      <PageTitle>Saída de Produtos</PageTitle>
 
       <div className="flex items-center flex-row-reverse">
         <Button
           size="large"
           onClick={NovoProduto}
           renderAs={Link}
-          to="/app/formProdutos"
+          to="/app/formSaida"
         >
-          Adicionar Produto
+          Adicionar Nova Saída
         </Button>
       </div>
 
-      <SectionTitle>Produtos cadastrados</SectionTitle>
+      <SectionTitle>Saídas cadastradas</SectionTitle>
       <TableContainer className="mb-8">
         <Table>
           <TableHeader>
             <tr>
-              <TableCell>Nome</TableCell>
-              <TableCell>Tipo</TableCell>
+              <TableCell>Data</TableCell>
+              <TableCell>Produto</TableCell>
+              <TableCell>Produto Tipo</TableCell>
               <TableCell>Quantidade</TableCell>
+              <TableCell>Corte</TableCell>
+              <TableCell>Cliente</TableCell>
+              <TableCell>valor</TableCell>
               <TableCell>Ações</TableCell>
             </tr>
           </TableHeader>
@@ -105,15 +109,34 @@ function Tables() {
             {dataTable.map((linha, i) => (
               <TableRow key={i}>
                 <TableCell>
-                  <p className="font-semibold">{linha.nome}</p>
+                  <p className="font-semibold">{linha.dataSaida}</p>
                 </TableCell>
                 <TableCell>
-                  <span className="text-sm">{linha.tipo}</span>
+                  <span className="text-sm">{linha.produto.nome}</span>
                 </TableCell>
 
                 <TableCell>
-                  <span className="text-sm">{linha.quantidadeEstoque}</span>
+                  <span className="text-sm">{linha.produto.tipo}</span>
                 </TableCell>
+
+                <TableCell>
+                  <span className="text-sm">{linha.qtdProduto}</span>
+                </TableCell>
+
+                <TableCell>
+                  <span className="text-sm">{linha.qtdCorte}</span>
+                </TableCell>
+
+                <TableCell>
+                  <span className="text-sm">{linha.cliente.nome}</span>
+                </TableCell>
+
+                <TableCell>
+                  <span className="text-sm">{linha.valorSaida}</span>
+                </TableCell>
+                
+
+                
                 <TableCell>
                   <div className="flex items-center space-x-4">
                     <Button layout="link" size="icon" aria-label="Edit">
